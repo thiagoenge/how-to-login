@@ -80,7 +80,6 @@ const LoginForm = ()=>{
           required={fields[key].required}
         />
       ))}
-      
   </div>
   )
 }

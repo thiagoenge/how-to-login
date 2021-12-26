@@ -1,7 +1,7 @@
 import * as React from 'react'
-import { ValidationRule } from '../../../src/interfaces/'
-import FormInput from '../../../src/components/FormInput'
-import { validationData } from '../../../src/utils/validations'
+import { ValidationRule } from 'src/interfaces/'
+import FormInput from 'src/components/FormInput'
+import { validationData } from 'src/utils/validations'
 import formFields from './fields'
 
 

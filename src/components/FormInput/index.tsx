@@ -1,6 +1,6 @@
 import * as React from 'react'
 import classNames from 'classnames'
-import { FormInput } from '../../../src/interfaces/'
+import { FormInput } from 'src/interfaces/'
 import style from './FormInput.module.css'
 
 const List = (props: FormInput) => {

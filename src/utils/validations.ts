@@ -1,5 +1,5 @@
 import { User } from "../interfaces";
-import { ValidationRule, ValidationData } from "../../src/interfaces";
+import { ValidationRule, ValidationData } from "src/interfaces";
 
 /** Dummy user data. */
 export const sampleUserData: User[] = [

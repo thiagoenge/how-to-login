@@ -1,4 +1,4 @@
-import { FormFields } from "../../../src/interfaces/";
+import { FormFields } from "src/interfaces/";
 
 const formFields: FormFields = {
   username: {

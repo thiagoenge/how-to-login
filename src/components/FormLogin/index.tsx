@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { ValidationRule } from 'src/interfaces/'
 import FormInput from 'src/components/FormInput'
+import Button from 'src/components/Button'
 import { validationData } from 'src/utils/validations'
 import formFields from './fields'
 
@@ -24,9 +25,11 @@ const validateFields = (type:string, value:string, validations:string[]) : Valid
   return result.message
 }
 
+
 const LoginForm = ()=>{
   const [fields, setFields] = React.useState(formFields)
-  
+  const [formHasError, setFormHasError] = React.useState(true)
+
   const handleChange = (e:React.ChangeEvent<HTMLInputElement>):void=>{
     const {value, name } = e.target
     // UX Note: Onchange only validate on fields that have errors
@@ -42,7 +45,8 @@ const LoginForm = ()=>{
       [name]:{
         ...oldFields[name],
         value,
-        error:errorMessage
+        error:errorMessage,
+        touched:true
       }
     }))
   }
@@ -59,7 +63,21 @@ const LoginForm = ()=>{
           error:errorMessage
         }
       }))
-    }
+    } 
+  }
+
+  React.useEffect(()=>{
+    const field = Object.values(fields).find(({error, touched})=>!!error || !touched)
+    setFormHasError(!!field)
+  },[fields])
+
+  const handleClick = ():void=>{
+    console.log('click', fields)
+    const fieldsPayload = Object.keys(fields).reduce((acc,key)=>{
+      acc[key]=fields[key].value
+      return acc
+    },{})
+    console.log('click', fieldsPayload)
   }
   
   return(
@@ -78,8 +96,19 @@ const LoginForm = ()=>{
           error={fields[key].error}
           tabIndex={i+1}
           required={fields[key].required}
+          autoComplete='off'
         />
       ))}
+      <Button 
+        type='button'
+        onClick={handleClick}
+        className='' 
+        label={'Entrar'} 
+        variant={'primary'}
+        disabled={formHasError} 
+        loading={false}
+        tabIndex={Object.keys(fields).length + 1}
+      />
   </div>
   )
 }

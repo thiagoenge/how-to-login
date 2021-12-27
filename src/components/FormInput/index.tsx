@@ -1,9 +1,9 @@
 import * as React from 'react'
 import classNames from 'classnames'
-import { FormInput } from 'src/interfaces/'
+import { FormInputProps } from 'src/interfaces/'
 import style from './FormInput.module.css'
 
-const List = (props: FormInput) => {
+const FormInput = (props: FormInputProps) => {
   const {
     id,
     value,
@@ -83,4 +83,4 @@ const List = (props: FormInput) => {
   )
 }
 
-export default List
+export default FormInput

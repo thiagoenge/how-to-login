@@ -19,7 +19,7 @@ type InputType =
   | "time"
   | "url";
 
-export interface FormInput {
+export interface FormInputProps {
   value: string;
   label?: string;
   placeholder?: string;
@@ -43,7 +43,7 @@ export interface FormInput {
 }
 
 interface FormFieldsState {
-  type: FormInput["type"];
+  type: FormInputProps["type"];
   label: string;
   value: string;
   hint: string;
@@ -51,6 +51,7 @@ interface FormFieldsState {
   required: boolean;
   error: string;
   validations: string[];
+  touched?: boolean;
 }
 export interface FormFields {
   [key: string]: FormFieldsState;
@@ -62,4 +63,14 @@ export interface ValidationData {
 export interface ValidationRule {
   hasError: boolean;
   message: string;
+}
+export interface ButtonProps {
+  className?: string;
+  type: "button" | "submit";
+  label: string;
+  variant?: "primary" | "secondary";
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
+  disabled?: boolean;
+  loading?: boolean;
+  tabIndex?: number;
 }

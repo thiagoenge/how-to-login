@@ -1,0 +1,15 @@
+.loginPage {
+  padding: var(--spacing-m);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.loginPageHero {
+  flex: 1;
+}
+
+.loginPageWrapper {
+  flex: 1;
+}

@@ -1,5 +1,5 @@
 .loginPage {
-  padding: var(--spacing-m);
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -7,9 +7,23 @@
 }
 
 .loginPageHero {
-  flex: 1;
+  display: none;
+}
+@media only screen and (min-width: 481px) {
+  .loginPageHero {
+    flex: 1;
+    height: 100vh;
+    position: relative;
+    display: block;
+  }
+}
+@media only screen and (min-width: 991px) {
+  .loginPageHero {
+    flex: 2;
+  }
 }
 
 .loginPageWrapper {
   flex: 1;
+  padding: 0 var(--spacing-m);
 }

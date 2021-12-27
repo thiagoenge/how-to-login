@@ -83,6 +83,10 @@ const LoginForm = ()=>{
   },[fields])
 
   const [loginError, setLoginError] = React.useState(null)
+  
+  const MAX_ATTEMPTS_ALLOWED = 4
+
+  const [attempts, setAttempts] = React.useState(MAX_ATTEMPTS_ALLOWED)
   const handleClick = async():Promise<void>=>{
     console.log('click', fields)
     const fieldsPayload = Object.keys(fields).reduce((acc,key)=>{
@@ -93,10 +97,12 @@ const LoginForm = ()=>{
     const response = await doLogin(fieldsPayload)
     if(response.message){
       setLoginError(response.message)
+      if(attempts){
+        setAttempts(attempts-1)
+      }
     }else{
       login(response)
     }
-    
   }
   
   return(
@@ -124,12 +130,14 @@ const LoginForm = ()=>{
         className={styles.button}
         label={'Entrar'} 
         variant={'secondary'}
-        disabled={formHasError} 
+        disabled={formHasError || !attempts} 
         loading={false}
         tabIndex={Object.keys(fields).length + 1}
       />
       {loginError ? 
-        <p className={styles.alert}>{loginError}</p> : null }
+        <p className={styles.alert}>{loginError} -{' '}
+          {attempts ? `Você ainda possui ${attempts} tentativas` : 'Espere algums minutos antes de tentar novamente'}
+        </p> : null }
   </div>
   )
 }

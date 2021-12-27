@@ -1,12 +1,31 @@
-import { User } from "../interfaces";
-import { ValidationRule, ValidationData } from "src/interfaces";
+import { User, ValidationRule, ValidationData } from "src/interfaces";
 
 /** Dummy user data. */
 export const sampleUserData: User[] = [
-  { id: 101, name: "Alice" },
-  { id: 102, name: "Bob" },
-  { id: 103, name: "Caroline" },
-  { id: 104, name: "Dave" },
+  {
+    id: 101,
+    name: "Romário",
+    email: "user@brasil.com",
+    password: "mudar123!",
+  },
+  {
+    id: 102,
+    name: "Zamorano",
+    email: "user@chile.com",
+    password: "mudar123!",
+  },
+  {
+    id: 103,
+    name: "Santa Cruz",
+    email: "user@paraguai.com",
+    password: "mudar123!",
+  },
+  {
+    id: 104,
+    name: "Caniggia",
+    email: "user@argentina.com",
+    password: "mudar123!",
+  },
 ];
 
 export const validationData: ValidationData = {

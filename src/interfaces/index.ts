@@ -1,6 +1,8 @@
 export type User = {
   id: number;
   name: string;
+  email?: string;
+  password?: string;
 };
 
 type InputType =
@@ -73,4 +75,8 @@ export interface ButtonProps {
   disabled?: boolean;
   loading?: boolean;
   tabIndex?: number;
+}
+export interface LoginReqBody {
+  username: string;
+  password: string;
 }

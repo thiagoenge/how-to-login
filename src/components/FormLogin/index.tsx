@@ -1,10 +1,13 @@
 import * as React from 'react'
+import { useRouter } from 'next/router'
 import { ValidationRule } from 'src/interfaces/'
+import { useAuth } from 'src/context/AuthContext';
+import { doLogin } from 'src/api/internal'
 import FormInput from 'src/components/FormInput'
 import Button from 'src/components/Button'
 import { validationData } from 'src/utils/validations'
 import formFields from './fields'
-
+import styles from './FormLogin.module.css'
 
 const validateFields = (type:string, value:string, validations:string[]) : ValidationRule['message'] => {
   const rules = validationData
@@ -27,6 +30,14 @@ const validateFields = (type:string, value:string, validations:string[]) : Valid
 
 
 const LoginForm = ()=>{
+  const router = useRouter()
+  const {user, login} = useAuth()
+  React.useEffect(()=>{
+    if(user){
+      router.push('/')
+    }
+  },[user])
+
   const [fields, setFields] = React.useState(formFields)
   const [formHasError, setFormHasError] = React.useState(true)
 
@@ -71,17 +82,25 @@ const LoginForm = ()=>{
     setFormHasError(!!field)
   },[fields])
 
-  const handleClick = ():void=>{
+  const [loginError, setLoginError] = React.useState(null)
+  const handleClick = async():Promise<void>=>{
     console.log('click', fields)
     const fieldsPayload = Object.keys(fields).reduce((acc,key)=>{
       acc[key]=fields[key].value
       return acc
     },{})
     console.log('click', fieldsPayload)
+    const response = await doLogin(fieldsPayload)
+    if(response.message){
+      setLoginError(response.message)
+    }else{
+      login(response)
+    }
+    
   }
   
   return(
-    <div className="loginForm">
+    <div className={styles.loginForm}>
       {Object.keys(fields).map((key,i)=>(
         <FormInput
           key={key}
@@ -102,13 +121,15 @@ const LoginForm = ()=>{
       <Button 
         type='button'
         onClick={handleClick}
-        className='' 
+        className={styles.button}
         label={'Entrar'} 
-        variant={'primary'}
+        variant={'secondary'}
         disabled={formHasError} 
         loading={false}
         tabIndex={Object.keys(fields).length + 1}
       />
+      {loginError ? 
+        <p className={styles.alert}>{loginError}</p> : null }
   </div>
   )
 }

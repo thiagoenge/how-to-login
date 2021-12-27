@@ -1,0 +1,9 @@
+.loginForm .button {
+  margin-top: var(--spacing-xxl);
+}
+.loginForm .alert {
+  background-color: var(--color-danger-50);
+  border: 1px solid var(--color-danger-100);
+  color: var(--color-danger-900);
+  padding: var(--spacing-squish-m);
+}

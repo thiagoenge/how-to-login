@@ -1,15 +1,36 @@
+import * as React from 'react'
+import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Layout from 'src/components/Layout'
+import { useAuth } from 'src/context/AuthContext'
 
-const IndexPage = () => (
-  <Layout title="Home | Next.js + TypeScript Example">
-    <h1>Hello Next.js 👋</h1>
-    <p>
-      <Link href="/about">
-        <a>About</a>
-      </Link>
-    </p>
-  </Layout>
+const IndexPage = () => {
+  const router = useRouter()
+  const {user} = useAuth()
+  
+  React.useEffect(() => {
+    if (!user) {
+      router.push('/login')
+    }
+  }, [])
+
+  if(!user){
+    return (
+      <p>
+        carregando
+      </p>
+    )
+  }
+
+  return (
+    <Layout title="Home | How to Login with Next.js + TypeScript">
+      <h1>Olá, {user?.name} 👋</h1>
+      <p>
+        <Link href="/logout">
+          <a>Sair</a>
+        </Link>
+      </p>
+    </Layout>
 )
-
+}
 export default IndexPage

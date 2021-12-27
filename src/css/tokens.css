@@ -1,9 +1,13 @@
 :root {
   /* primary */
-  --color-primary: #371e56;
+  --color-primary-light: #4b2c70;
+  --color-primary-100: #371e56;
+  --color-primary-dark: #2d1649;
   --color-primary-contrast: #fff;
   /* secondary */
-  --color-secondary: #2bc4c3;
+  --color-secondary-light: #39dbdb;
+  --color-secondary-100: #2bc4c3;
+  --color-secondary-dark: #2eadad;
   --color-secondary-contrast: #19121c;
   /* neutral */
   --color-neutral-50: #f8f7f8;
@@ -170,6 +174,14 @@
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
   --font-weight-black: 900;
+
+  /* font style */
+  --font-field-support: var(--font-weight-regular) var(--font-size-xs)
+    var(--font-family);
+  --font-field-label: var(--font-weight-regular) var(--font-size-m)
+    var(--font-family);
+  --font-list-label: var(--font-weight-medium) var(--font-size-m)
+    var(--font-family);
 
   /* border radius */
   --border-radius-s: 4px;

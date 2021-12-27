@@ -86,3 +86,6 @@ https://how-to-login.vercel.app/
   },
 ]
 ```
+
+## A/C
+@alefumes, @giancarlosouza, @gustavorosolem, @iurykrieger, @jonatasoliveira, @mbanton, @alexpsilva, @villaca, @andersonrostirolla, @udleinat, @natanfernandes, @gabrielzevedo, @ericrsilva, @mhcamillow
